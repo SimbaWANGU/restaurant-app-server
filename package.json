@@ -1,0 +1,34 @@
+{
+  "name": "restaurant-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimbaWANGU/restaurant-app-server.git"
+  },
+  "author": "SimbaWANGU",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SimbaWANGU/restaurant-app-server/issues"
+  },
+  "homepage": "https://github.com/SimbaWANGU/restaurant-app-server#readme",
+  "dependencies": {
+    "@types/express": "^4.17.15",
+    "@types/express-session": "^1.17.5",
+    "@types/mongoose": "^5.11.97",
+    "@types/passport": "^1.0.11",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.8.1",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "ts-node": "^10.9.1"
+  }
+}
