@@ -1,5 +1,6 @@
 require("dotenv").config();
 import { Request, Response } from "express";
+import { authRouter } from "./src/routes/auth";
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
@@ -36,9 +37,7 @@ try {
 }
 
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+app.use('/', authRouter)
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);

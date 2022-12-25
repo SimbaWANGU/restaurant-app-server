@@ -1,14 +1,25 @@
-import mongoose from 'mongoose'
-import passportLocalMongoose from 'passport-local-mongoose'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const mongoose = require('mongoose')
+const passportLocalMongoose = require('passport-local-mongoose')
 
 const userSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-  password: String,
-  email: String
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  }
 })
 
-userSchema.plugin(passportLocalMongoose)
+userSchema.plugin(passportLocalMongoose, { usernameField: 'username' })
 const userModel = mongoose.model('User', userSchema)
 
 export { userModel }
