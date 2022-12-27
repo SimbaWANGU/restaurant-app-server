@@ -20,10 +20,9 @@ passport.deserializeUser((id: number, done: Function) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
-authRouter.post('/auth/register', async (req: Request, res: Response): Promise<void> => {
+authRouter.post('/auth/register', (req: Request, res: Response) => {
   try {
-    await User.register({
+    User.register({
       username: req.body.username,
       password: req.body.password,
       email: req.body.email
