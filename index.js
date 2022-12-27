@@ -1,5 +1,6 @@
 'use strict'
 Object.defineProperty(exports, '__esModule', { value: true })
+const auth_1 = require('./src/routes/auth')
 require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -31,9 +32,7 @@ try {
 } catch (err) {
   console.log(err)
 }
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/', auth_1.authRouter)
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`)
 })
