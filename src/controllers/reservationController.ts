@@ -43,7 +43,6 @@ const getReservation = async (req: Request, res: Response): Promise<void> => {
       error: 'User does not exist'
     })
   } else {
-    console.log(req.params.username)
     const myReservations = await ReservationModel.find({
       username: req.params.username
     })

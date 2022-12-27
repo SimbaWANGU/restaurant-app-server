@@ -47,7 +47,6 @@ const getReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
     else {
-        console.log(req.params.username);
         const myReservations = yield Reservation_1.ReservationModel.find({
             username: req.params.username
         });
