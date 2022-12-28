@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { ReservationModel } from '../models/Reservation'
 
 const createReservation = async (req: Request, res: Response): Promise<void> => {
-  if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null) {
+  if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null) {
     res.json({
       error: 'Incomplete Reservation'
     })
@@ -62,4 +62,34 @@ const deleteReservation = async (req: Request, res: Response): Promise<void> => 
   }
 }
 
-export { createReservation, getReservation, deleteReservation }
+const updateReservation = async (req: Request, res: Response): Promise<void> => {
+  if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null || req.params.id === null) {
+    res.json({
+      error: 'Incomplete Reservation'
+    })
+  } else {
+    await ReservationModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        username: req.body.username,
+        date: req.body.date,
+        time: req.body.time,
+        guests: req.body.guests,
+        completed: false
+      },
+      { new: true }
+    )
+      .then(() => {
+        res.json({
+          updated: 'Reservation has been updated'
+        })
+      })
+      .catch(() => {
+        res.json({
+          error: 'An error occurred while updating the Reservation'
+        })
+      })
+  }
+}
+
+export { createReservation, getReservation, deleteReservation, updateReservation }

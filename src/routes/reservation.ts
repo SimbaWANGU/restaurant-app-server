@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { createReservation, deleteReservation, getReservation } from '../controllers/reservationController'
+import { createReservation, deleteReservation, getReservation, updateReservation } from '../controllers/reservationController'
 
 const reservationRouter = Router()
 
@@ -37,6 +37,12 @@ reservationRouter.delete('/:id', (req: Request, res: Response) => {
       error: 'You need to login'
     })
   }
+})
+
+reservationRouter.put('/:id', (req: Request, res: Response) => {
+  updateReservation(req, res)
+    .then(() => {})
+    .catch(() => {})
 })
 
 export { reservationRouter }

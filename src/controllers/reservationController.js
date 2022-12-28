@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteReservation = exports.getReservation = exports.createReservation = void 0;
+exports.updateReservation = exports.deleteReservation = exports.getReservation = exports.createReservation = void 0;
 const Reservation_1 = require("../models/Reservation");
 const createReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null) {
+    if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null) {
         res.json({
             error: 'Incomplete Reservation'
         });
@@ -75,3 +75,30 @@ const deleteReservation = (req, res) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.deleteReservation = deleteReservation;
+const updateReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null || req.params.id === null) {
+        res.json({
+            error: 'Incomplete Reservation'
+        });
+    }
+    else {
+        yield Reservation_1.ReservationModel.findOneAndUpdate({ _id: req.params.id }, {
+            username: req.body.username,
+            date: req.body.date,
+            time: req.body.time,
+            guests: req.body.guests,
+            completed: false
+        }, { new: true })
+            .then(() => {
+            res.json({
+                updated: 'Reservation has been updated'
+            });
+        })
+            .catch(() => {
+            res.json({
+                error: 'An error occurred while updating the Reservation'
+            });
+        });
+    }
+});
+exports.updateReservation = updateReservation;

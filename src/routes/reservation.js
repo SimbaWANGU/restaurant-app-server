@@ -41,3 +41,8 @@ reservationRouter.delete('/:id', (req, res) => {
         });
     }
 });
+reservationRouter.put('/:id', (req, res) => {
+    (0, reservationController_1.updateReservation)(req, res)
+        .then(() => { })
+        .catch(() => { });
+});
