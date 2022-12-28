@@ -1,0 +1,48 @@
+{
+  "name": "restaurant-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimbaWANGU/restaurant-app-server.git"
+  },
+  "author": "SimbaWANGU",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SimbaWANGU/restaurant-app-server/issues"
+  },
+  "homepage": "https://github.com/SimbaWANGU/restaurant-app-server#readme",
+  "dependencies": {
+    "@types/express": "^4.17.15",
+    "@types/express-session": "^1.17.5",
+    "@types/mongoose": "^5.11.97",
+    "@types/passport": "^1.0.11",
+    "@types/passport-local": "^1.0.34",
+    "@types/passport-local-mongoose": "^6.1.1",
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.8.1",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^7.1.2",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^24.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.31.11",
+    "typescript": "*"
+  }
+}
