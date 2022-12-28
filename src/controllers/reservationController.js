@@ -9,36 +9,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getReservation = exports.createReservation = void 0;
+exports.deleteReservation = exports.getReservation = exports.createReservation = void 0;
 const Reservation_1 = require("../models/Reservation");
-const createReservation = (req, res) => {
+const createReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null) {
         res.json({
             error: 'Incomplete Reservation'
         });
     }
     else {
-        Reservation_1.ReservationModel.create({
+        yield Reservation_1.ReservationModel.create({
             username: req.body.username,
             date: req.body.date,
             time: req.body.time,
             guests: req.body.guests,
             completed: false
         })
-            .then((savedObject) => {
-            console.log(savedObject);
+            .then(() => {
             res.json({
                 success: 'Resevation has been created'
             });
         })
-            .catch((error) => {
-            console.log(error);
+            .catch(() => {
             res.json({
-                error: error.toString()
+                error: 'An error occurred'
             });
         });
     }
-};
+});
 exports.createReservation = createReservation;
 const getReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.username === null) {
@@ -56,3 +54,24 @@ const getReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getReservation = getReservation;
+const deleteReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.params.id === null) {
+        res.json({
+            error: 'Reservation does not exist'
+        });
+    }
+    else {
+        Reservation_1.ReservationModel.findByIdAndDelete(req.params.id)
+            .then(() => {
+            res.json({
+                deleted: 'The reservation has been cancelled'
+            });
+        })
+            .catch(() => {
+            res.json({
+                error: 'An error occurred'
+            });
+        });
+    }
+});
+exports.deleteReservation = deleteReservation;

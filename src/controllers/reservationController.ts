@@ -1,37 +1,27 @@
 import { Request, Response } from 'express'
 import { ReservationModel } from '../models/Reservation'
 
-interface Reservation {
-  username: String
-  date: String
-  time: String
-  guests: Number
-  completed: Boolean
-}
-
-const createReservation = (req: Request, res: Response): void => {
+const createReservation = async (req: Request, res: Response): Promise<void> => {
   if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null) {
     res.json({
       error: 'Incomplete Reservation'
     })
   } else {
-    ReservationModel.create({
+    await ReservationModel.create({
       username: req.body.username,
       date: req.body.date,
       time: req.body.time,
       guests: req.body.guests,
       completed: false
     })
-      .then((savedObject: Reservation) => {
-        console.log(savedObject)
+      .then(() => {
         res.json({
           success: 'Resevation has been created'
         })
       })
-      .catch((error: Error) => {
-        console.log(error)
+      .catch(() => {
         res.json({
-          error: error.toString()
+          error: 'An error occurred'
         })
       })
   }
@@ -52,4 +42,24 @@ const getReservation = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export { createReservation, getReservation }
+const deleteReservation = async (req: Request, res: Response): Promise<void> => {
+  if (req.params.id === null) {
+    res.json({
+      error: 'Reservation does not exist'
+    })
+  } else {
+    ReservationModel.findByIdAndDelete(req.params.id)
+      .then(() => {
+        res.json({
+          deleted: 'The reservation has been cancelled'
+        })
+      })
+      .catch(() => {
+        res.json({
+          error: 'An error occurred'
+        })
+      })
+  }
+}
+
+export { createReservation, getReservation, deleteReservation }
