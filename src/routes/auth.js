@@ -24,25 +24,24 @@ passport_1.default.deserializeUser((id, done) => {
     }
 });
 authRouter.post('/auth/register', (req, res) => {
-    try {
-        User_1.userModel.register({
-            username: req.body.username,
-            password: req.body.password,
-            email: req.body.email
-        }, req.body.password);
+    const user = {
+        username: req.body.username,
+        email: req.body.email
+    };
+    User_1.userModel.register(new User_1.userModel(user), req.body.password, (err, user) => {
+        if (err instanceof Error) {
+            res.json({
+                error: err.message
+            });
+        }
         passport_1.default.authenticate('local')(req, res, () => {
             res.json({
                 username: req.body.username,
+                email: req.body.email,
                 message: 'You have created a new account'
             });
         });
-    }
-    catch (err) {
-        console.log(err);
-        res.json({
-            err
-        });
-    }
+    });
 });
 authRouter.post('/auth/login', (req, res) => {
     const user = new User_1.userModel({
