@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors');
 require('dotenv').config();
 // initialize app
 const app = express();
@@ -15,6 +16,7 @@ const port = 3000;
 // middleware
 const mongoUrl = process.env.MONGODB_URL;
 const secret = process.env.SECRET;
+app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));

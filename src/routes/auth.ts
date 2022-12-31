@@ -21,25 +21,28 @@ passport.deserializeUser((id: number, done: Function) => {
 })
 
 authRouter.post('/auth/register', (req: Request, res: Response) => {
-  try {
-    User.register({
-      username: req.body.username,
-      password: req.body.password,
-      email: req.body.email
-    }, req.body.password
-    )
-    passport.authenticate('local')(req, res, () => {
-      res.json({
-        username: req.body.username,
-        message: 'You have created a new account'
-      })
-    })
-  } catch (err) {
-    console.log(err)
-    res.json({
-      err
-    })
+  const user = {
+    username: req.body.username,
+    email: req.body.email
   }
+  User.register(
+    new User(user),
+    req.body.password,
+    (err: any, user: any) => {
+      if (err instanceof Error) {
+        res.json({
+          error: err.message
+        })
+      }
+      passport.authenticate('local')(req, res, () => {
+        res.json({
+          username: req.body.username,
+          email: req.body.email,
+          message: 'You have created a new account'
+        })
+      })
+    }
+  )
 })
 
 authRouter.post('/auth/login', (req: Request, res: Response) => {
