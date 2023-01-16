@@ -12,7 +12,7 @@ reservationRouter.post('/create', (req, res) => {
             .catch(() => { });
     }
     else {
-        res.json({
+        res.status(401).json({
             error: 'You need to login'
         });
     }
@@ -24,7 +24,7 @@ reservationRouter.get('/:username', (req, res) => {
             .catch(() => { });
     }
     else {
-        res.json({
+        res.status(401).json({
             error: 'You need to login'
         });
     }
@@ -36,7 +36,7 @@ reservationRouter.delete('/:id', (req, res) => {
             .catch(() => { });
     }
     else {
-        res.json({
+        res.status(401).json({
             error: 'You need to login'
         });
     }

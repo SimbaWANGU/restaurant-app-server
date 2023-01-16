@@ -41,5 +41,5 @@ catch (err) {
 app.use('/', auth_1.authRouter);
 app.use('/reserve', reservation_1.reservationRouter);
 app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
+    console.log(`Express is listening at http://localhost:${port}`);
 });

@@ -30,14 +30,13 @@ authRouter.post('/auth/register', (req: Request, res: Response) => {
     req.body.password,
     (err: any, user: any) => {
       if (err instanceof Error) {
-        res.json({
-          error: err.message
+        res.status(500).json({
+          error: 'An error occurred'
         })
       }
       passport.authenticate('local')(req, res, () => {
-        res.json({
+        res.status(200).json({
           username: req.body.username,
-          email: req.body.email,
           message: 'You have created a new account'
         })
       })
@@ -53,17 +52,33 @@ authRouter.post('/auth/login', (req: Request, res: Response) => {
   try {
     req.login(user, () => {
       passport.authenticate('local')(req, res, () => {
-        res.json({
+        res.status(200).json({
           username: req.body.username,
-          message: 'You have access',
-          status: 200
+          message: 'You have access'
         })
       })
     })
   } catch (err) {
-    res.json({
-      lmao: 'You\'re not in'
+    res.status(500).json({
+      lmao: 'An error occurred'
     })
+  }
+})
+
+authRouter.post('/auth/logout', (req: Request, res: Response) => {
+  try {
+    req.logout((err: Error) => {
+      if (err instanceof Error) {
+        res.status(500).json({
+          message: 'An error occurred'
+        })
+      }
+      res.status(200).json({
+        message: 'You have been logged out'
+      })
+    })
+  } catch (err) {
+
   }
 })
 

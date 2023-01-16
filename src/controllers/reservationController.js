@@ -13,7 +13,7 @@ exports.updateReservation = exports.deleteReservation = exports.getReservation =
 const Reservation_1 = require("../models/Reservation");
 const createReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null) {
-        res.json({
+        res.status(400).json({
             error: 'Incomplete Reservation'
         });
     }
@@ -40,7 +40,7 @@ const createReservation = (req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.createReservation = createReservation;
 const getReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.username === null) {
-        res.json({
+        res.status(400).json({
             error: 'User does not exist'
         });
     }
@@ -56,7 +56,7 @@ const getReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getReservation = getReservation;
 const deleteReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.params.id === null) {
-        res.json({
+        res.status(400).json({
             error: 'Reservation does not exist'
         });
     }
@@ -77,7 +77,7 @@ const deleteReservation = (req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.deleteReservation = deleteReservation;
 const updateReservation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null || req.params.id === null) {
-        res.json({
+        res.status(400).json({
             error: 'Incomplete Reservation'
         });
     }
