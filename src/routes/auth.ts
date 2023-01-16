@@ -65,4 +65,21 @@ authRouter.post('/auth/login', (req: Request, res: Response) => {
   }
 })
 
+authRouter.post('/auth/logout', (req: Request, res: Response) => {
+  try {
+    req.logout((err: Error) => {
+      if (err instanceof Error) {
+        res.status(500).json({
+          message: 'An error occurred'
+        })
+      }
+      res.status(200).json({
+        message: 'You have been logged out'
+      })
+    })
+  } catch (err) {
+
+  }
+})
+
 export { authRouter }

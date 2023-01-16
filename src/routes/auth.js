@@ -63,3 +63,19 @@ authRouter.post('/auth/login', (req, res) => {
         });
     }
 });
+authRouter.post('/auth/logout', (req, res) => {
+    try {
+        req.logout((err) => {
+            if (err instanceof Error) {
+                res.status(500).json({
+                    message: 'An error occurred'
+                });
+            }
+            res.status(200).json({
+                message: 'You have been logged out'
+            });
+        });
+    }
+    catch (err) {
+    }
+});
