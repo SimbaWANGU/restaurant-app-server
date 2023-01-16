@@ -3,7 +3,7 @@ import { ReservationModel } from '../models/Reservation'
 
 const createReservation = async (req: Request, res: Response): Promise<void> => {
   if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null) {
-    res.json({
+    res.status(400).json({
       error: 'Incomplete Reservation'
     })
   } else {
@@ -29,7 +29,7 @@ const createReservation = async (req: Request, res: Response): Promise<void> => 
 
 const getReservation = async (req: Request, res: Response): Promise<void> => {
   if (req.params.username === null) {
-    res.json({
+    res.status(400).json({
       error: 'User does not exist'
     })
   } else {
@@ -44,7 +44,7 @@ const getReservation = async (req: Request, res: Response): Promise<void> => {
 
 const deleteReservation = async (req: Request, res: Response): Promise<void> => {
   if (req.params.id === null) {
-    res.json({
+    res.status(400).json({
       error: 'Reservation does not exist'
     })
   } else {
@@ -64,7 +64,7 @@ const deleteReservation = async (req: Request, res: Response): Promise<void> => 
 
 const updateReservation = async (req: Request, res: Response): Promise<void> => {
   if (req.body.username === null || req.body.date === null || req.body.time === null || req.body.guests === null || req.body.completed === null || req.params.id === null) {
-    res.json({
+    res.status(400).json({
       error: 'Incomplete Reservation'
     })
   } else {
