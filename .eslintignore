@@ -1,6 +1,9 @@
 /src/routes/auth.js
 /src/routes/reservation.js
+/src/routes/feedback.js
 /src/models/User.js
 /src/models/Reservation.js
+/src/models/Feedback.js
 /src/controllers/reservationController.js
+/src/controllers/feedbackController.js
 index.js
