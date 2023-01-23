@@ -7,11 +7,11 @@ const authRouter = Router()
 
 passport.use(User.createStrategy())
 
-passport.serializeUser((user: any, done: Function) => {
+passport.serializeUser((user: any, done) => {
   done(null, user.id)
 })
 
-passport.deserializeUser((id: number, done: Function) => {
+passport.deserializeUser((id: number, done) => {
   try {
     const user = User.findById(id)
     done(null, user)
