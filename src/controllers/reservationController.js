@@ -26,12 +26,12 @@ const createReservation = (req, res) => __awaiter(void 0, void 0, void 0, functi
             completed: false
         })
             .then(() => {
-            res.json({
+            res.status(200).json({
                 success: 'Resevation has been created'
             });
         })
             .catch(() => {
-            res.json({
+            res.status(500).json({
                 error: 'An error occurred'
             });
         });
@@ -48,7 +48,7 @@ const getReservation = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const myReservations = yield Reservation_1.ReservationModel.find({
             username: req.params.username
         });
-        res.json({
+        res.status(200).json({
             myReservations
         });
     }
@@ -63,12 +63,12 @@ const deleteReservation = (req, res) => __awaiter(void 0, void 0, void 0, functi
     else {
         Reservation_1.ReservationModel.findByIdAndDelete(req.params.id)
             .then(() => {
-            res.json({
+            res.status(200).json({
                 deleted: 'The reservation has been cancelled'
             });
         })
             .catch(() => {
-            res.json({
+            res.status(500).json({
                 error: 'An error occurred'
             });
         });
@@ -90,12 +90,12 @@ const updateReservation = (req, res) => __awaiter(void 0, void 0, void 0, functi
             completed: false
         }, { new: true })
             .then(() => {
-            res.json({
+            res.status(200).json({
                 updated: 'Reservation has been updated'
             });
         })
             .catch(() => {
-            res.json({
+            res.status(500).json({
                 error: 'An error occurred while updating the Reservation'
             });
         });
