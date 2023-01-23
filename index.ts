@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { authRouter } from './src/routes/auth'
+import { feedbackRouter } from './src/routes/feedback'
 import { reservationRouter } from './src/routes/reservation'
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -42,6 +43,7 @@ try {
 // routes
 app.use('/', authRouter)
 app.use('/reserve', reservationRouter)
+app.use('/feedback', feedbackRouter)
 
 app.listen(port, () => {
   console.log(`Express is listening at http://localhost:${port}`)

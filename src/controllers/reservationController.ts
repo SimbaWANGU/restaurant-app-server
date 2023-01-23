@@ -15,12 +15,12 @@ const createReservation = async (req: Request, res: Response): Promise<void> => 
       completed: false
     })
       .then(() => {
-        res.json({
+        res.status(200).json({
           success: 'Resevation has been created'
         })
       })
       .catch(() => {
-        res.json({
+        res.status(500).json({
           error: 'An error occurred'
         })
       })
@@ -36,7 +36,7 @@ const getReservation = async (req: Request, res: Response): Promise<void> => {
     const myReservations = await ReservationModel.find({
       username: req.params.username
     })
-    res.json({
+    res.status(200).json({
       myReservations
     })
   }
@@ -50,12 +50,12 @@ const deleteReservation = async (req: Request, res: Response): Promise<void> => 
   } else {
     ReservationModel.findByIdAndDelete(req.params.id)
       .then(() => {
-        res.json({
+        res.status(200).json({
           deleted: 'The reservation has been cancelled'
         })
       })
       .catch(() => {
-        res.json({
+        res.status(500).json({
           error: 'An error occurred'
         })
       })
@@ -80,12 +80,12 @@ const updateReservation = async (req: Request, res: Response): Promise<void> => 
       { new: true }
     )
       .then(() => {
-        res.json({
+        res.status(200).json({
           updated: 'Reservation has been updated'
         })
       })
       .catch(() => {
-        res.json({
+        res.status(500).json({
           error: 'An error occurred while updating the Reservation'
         })
       })

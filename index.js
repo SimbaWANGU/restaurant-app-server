@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/no-var-requires */
 const auth_1 = require("./src/routes/auth");
+const feedback_1 = require("./src/routes/feedback");
 const reservation_1 = require("./src/routes/reservation");
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -40,6 +41,7 @@ catch (err) {
 // routes
 app.use('/', auth_1.authRouter);
 app.use('/reserve', reservation_1.reservationRouter);
+app.use('/feedback', feedback_1.feedbackRouter);
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
 });
